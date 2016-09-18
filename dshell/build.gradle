@@ -1,0 +1,68 @@
+apply plugin: 'com.android.model.library'
+
+model {
+    android {
+        compileSdkVersion = 19
+        buildToolsVersion = "23.0.1"
+        defaultPublishConfig = 'debug'
+        defaultConfig {
+            minSdkVersion.apiLevel = 9
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = "1.0"
+        }
+        buildTypes {
+            debug {
+                debuggable = true
+                ndk {
+                    debuggable = true
+                }
+            }
+            release {
+                debuggable = true
+                ndk {
+                    debuggable = true
+                }
+            }
+        }
+        ndk {
+            moduleName = "dshell"
+            cppFlags.add("-std=c++11")
+            cppFlags.add("-fexceptions")
+            cppFlags.add("-frtti")
+            cppFlags.add("-fpermissive")
+            cppFlags.add("-DANDROID_SMP=1")
+            abiFilters.add("armeabi")
+            abiFilters.add("armeabi-v7a")
+            abiFilters.add("x86")
+            //abiFilters.add("arm64-v8a")
+            ldLibs.addAll(["android", "log"])
+            stl = "gnustl_static"
+        }
+    }
+
+//    repositories {
+//        libs(PrebuiltLibraries) {
+//            libart{
+//                headers.srcDir "src/main/jni/lib/include"
+//                binaries.withType(SharedLibraryBinary) {
+//                    sharedLibraryFile = file("src/main/jni/lib/libart.so")
+//                }
+//            }
+//        }
+//    }
+//    android.sources{
+//        main{
+//            jni{
+//                dependencies{
+//                    library "libart" linkage "shared"
+//                }
+//            }
+//        }
+//    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //testCompile 'junit:junit:4.12'
+}

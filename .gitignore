@@ -17,6 +17,16 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Android Studio
+.gradle
+.idea
+build/
+gradlew
+gradlew.bat
+gradle/
+*.iml
+.gitattributes
+
 # =========================
 # Operating System Files
 # =========================
